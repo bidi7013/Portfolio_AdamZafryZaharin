@@ -1,7 +1,6 @@
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import React, { useState } from 'react';
 import { 
-  Github, 
-  Linkedin, 
   Mail, 
   Code, 
   Layout, 
@@ -9,7 +8,6 @@ import {
   Terminal, 
   ExternalLink, 
   ChevronRight, 
-  Award, 
   Briefcase, 
   GraduationCap 
 } from 'lucide-react';
@@ -93,7 +91,7 @@ export default function Portfolio() {
             rel="noreferrer"
             className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-lg border border-slate-700 flex items-center gap-2 transition-all"
           >
-            <Github size={18} /> GitHub Profile
+            <FaGithub size={18} /> GitHub Profile
           </a>
         </div>
       </section>
@@ -171,7 +169,7 @@ export default function Portfolio() {
                     <h3 className="text-2xl font-bold text-white">{project.title}</h3>
                     <div className="flex gap-2">
                       <a href={project.github} className="text-slate-400 hover:text-white transition-colors" title="Repository">
-                        <Github size={20} />
+                        <FaGithub size={20} />
                       </a>
                       <a href={project.demo} className="text-slate-400 hover:text-white transition-colors" title="Live Preview">
                         <ExternalLink size={20} />
@@ -261,10 +259,10 @@ export default function Portfolio() {
             <Mail size={22} />
           </a>
           <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 text-slate-300 hover:text-white rounded-full border border-slate-700 hover:border-blue-500 transition-colors">
-            <Linkedin size={22} />
+            <FaLinkedin size={22} />
           </a>
           <a href="https://github.com" target="_blank" rel="noreferrer" className="p-3 bg-slate-800 text-slate-300 hover:text-white rounded-full border border-slate-700 hover:border-blue-500 transition-colors">
-            <Github size={22} />
+            <FaGithub size={22} />
           </a>
         </div>
       </section>
