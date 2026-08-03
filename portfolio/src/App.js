@@ -12,7 +12,7 @@ import {
   GraduationCap 
 } from 'lucide-react';
 
-export default function Portfolio() {
+export default function App() {
   const [activeTab, setActiveTab] = useState('all');
 
   const projects = [
