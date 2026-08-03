@@ -48,39 +48,39 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-100 font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-slate-800 z-50">
+      <nav className="fixed top-0 left-0 w-full bg-slate-900/70 backdrop-blur-md border-b border-slate-800 z-50">
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <span className="text-xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">
+          <span className="text-xl font-bold text-slate-200">
             Adam Zafry
           </span>
           <div className="flex space-x-6 text-sm font-medium text-slate-300">
-            <a href="#about" className="hover:text-blue-400 transition-colors">About</a>
-            <a href="#skills" className="hover:text-blue-400 transition-colors">Skills</a>
-            <a href="#projects" className="hover:text-blue-400 transition-colors">Projects</a>
-            <a href="#experience" className="hover:text-blue-400 transition-colors">Experience</a>
-            <a href="#contact" className="hover:text-blue-400 transition-colors">Contact</a>
+            <a href="#about" className="hover:text-white transition-colors">About</a>
+            <a href="#skills" className="hover:text-white transition-colors">Skills</a>
+            <a href="#projects" className="hover:text-white transition-colors">Projects</a>
+            <a href="#experience" className="hover:text-white transition-colors">Experience</a>
+            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="about" className="pt-36 pb-20 px-6 max-w-6xl mx-auto flex flex-col items-start justify-center min-h-[85vh]">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold mb-6">
-          <Terminal size={14} /> Computer Science Student @ USM
-        </div>
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+      <section id="about" className="relative pt-36 pb-20 px-6 flex flex-col items-center justify-center text-center min-h-screen overflow-hidden">
+        <div className="absolute inset-0 bg-slate-900 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
+        <div className="relative z-10">
+          <p className="text-slate-400 text-sm font-medium mb-4 flex items-center justify-center gap-2"><Terminal size={14} /> Computer Science Student @ USM</p>
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
           Adam Zafry Zaharin
         </h1>
-        <h2 className="text-2xl md:text-3xl font-semibold text-slate-400 mb-6">
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-400 mb-6 max-w-3xl mx-auto">
           Software Developer & Web Engineering Enthusiast
         </h2>
-        <p className="text-slate-400 max-w-2xl text-lg leading-relaxed mb-8">
+          <p className="text-slate-400 max-w-2xl text-lg leading-relaxed mb-10 mx-auto">
           Computer Science undergraduate at Universiti Sains Malaysia specializing in building responsive web applications, modern interactive user interfaces, and clean code solutions.
         </p>
-        <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
           <a 
             href="#projects" 
-            className="px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
+            className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-lg flex items-center gap-2 transition-all border border-slate-700"
           >
             View Projects <ChevronRight size={18} />
           </a>
@@ -88,10 +88,11 @@ export default function App() {
             href="https://github.com" 
             target="_blank" 
             rel="noreferrer"
-            className="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-lg border border-slate-700 flex items-center gap-2 transition-all"
+            className="px-6 py-3 bg-transparent hover:bg-slate-800 text-slate-300 font-medium rounded-lg border border-slate-700 flex items-center gap-2 transition-all"
           >
             <FaGithub size={18} /> GitHub Profile
           </a>
+        </div>
         </div>
       </section>
 
@@ -99,11 +100,11 @@ export default function App() {
       <section id="skills" className="py-20 px-6 bg-slate-950/50 border-y border-slate-800">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-white mb-12 flex items-center gap-3">
-            <Code className="text-blue-400" /> Technical Expertise
+            <Code className="text-slate-400" /> Technical Expertise
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-              <div className="w-12 h-12 bg-blue-500/10 rounded-lg flex items-center justify-center text-blue-400 mb-4">
+              <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 mb-4">
                 <Layout size={24} />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Frontend Development</h3>
@@ -118,7 +119,7 @@ export default function App() {
             </div>
 
             <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-              <div className="w-12 h-12 bg-teal-500/10 rounded-lg flex items-center justify-center text-teal-400 mb-4">
+              <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 mb-4">
                 <Server size={24} />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Backend & Languages</h3>
@@ -133,7 +134,7 @@ export default function App() {
             </div>
 
             <div className="bg-slate-900 border border-slate-800 p-6 rounded-xl">
-              <div className="w-12 h-12 bg-indigo-500/10 rounded-lg flex items-center justify-center text-indigo-400 mb-4">
+              <div className="w-12 h-12 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 mb-4">
                 <Terminal size={24} />
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Tools & Workflows</h3>
@@ -181,14 +182,14 @@ export default function App() {
                   <ul className="space-y-2 mb-6">
                     {project.highlights.map((point, idx) => (
                       <li key={idx} className="text-xs text-slate-400 flex items-start gap-2">
-                        <span className="text-blue-400 mt-0.5">•</span> {point}
+                        <span className="text-slate-500 mt-0.5">•</span> {point}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
                   {project.tech.map((tech) => (
-                    <span key={tech} className="px-2.5 py-1 bg-slate-800 text-blue-400 rounded text-xs font-mono">
+                    <span key={tech} className="px-2.5 py-1 bg-slate-800 text-slate-400 rounded text-xs font-mono">
                       {tech}
                     </span>
                   ))}
@@ -205,13 +206,13 @@ export default function App() {
           {/* Work Experience */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <Briefcase className="text-blue-400" /> Work Experience
+              <Briefcase className="text-slate-400" /> Work Experience
             </h2>
             <div className="space-y-8">
               <div className="relative pl-6 border-l-2 border-slate-800">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-slate-900" />
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-500 border-4 border-slate-900" />
                 <h3 className="text-lg font-bold text-white">Software Engineering Intern</h3>
-                <p className="text-sm text-blue-400 mb-2">Walnut Education • April 2026 – Present</p>
+                <p className="text-sm text-slate-400 mb-2">Walnut Education • April 2026 – Present</p>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   Contributed to frontend feature development, software platform maintenance, and educational outreach programs.
                 </p>
@@ -222,22 +223,22 @@ export default function App() {
           {/* Education & Leadership */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
-              <GraduationCap className="text-teal-400" /> Education & Leadership
+              <GraduationCap className="text-slate-400" /> Education & Leadership
             </h2>
             <div className="space-y-8">
               <div className="relative pl-6 border-l-2 border-slate-800">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-teal-500 border-4 border-slate-900" />
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-500 border-4 border-slate-900" />
                 <h3 className="text-lg font-bold text-white">Bachelor of Computer Science</h3>
-                <p className="text-sm text-teal-400 mb-2">Universiti Sains Malaysia (USM)</p>
+                <p className="text-sm text-slate-400 mb-2">Universiti Sains Malaysia (USM)</p>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   Focusing on Web Engineering, Data Structures & Algorithms, Natural Language Processing, and WebGL/Computer Graphics.
                 </p>
               </div>
 
               <div className="relative pl-6 border-l-2 border-slate-800">
-                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-indigo-500 border-4 border-slate-900" />
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-slate-500 border-4 border-slate-900" />
                 <h3 className="text-lg font-bold text-white">Vice Program Director</h3>
-                <p className="text-sm text-indigo-400 mb-2">Sukan Antara Desasiswa (USM)</p>
+                <p className="text-sm text-slate-400 mb-2">Sukan Antara Desasiswa (USM)</p>
                 <p className="text-slate-400 text-sm leading-relaxed">
                   Coordinated event logistics, program workflows, and committee communication for university-wide student sports programs.
                 </p>
