@@ -44,3 +44,98 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #e04b19;
 }
+
+/* Smooth Slide-in and Fade Keyframes */
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tabFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.99) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(250, 93, 41, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(250, 93, 41, 0.7);
+  }
+}
+
+/* Smooth Animation Classes with Hardware Acceleration */
+.animate-slide-up {
+  will-change: transform, opacity;
+  animation: slideInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-left {
+  will-change: transform, opacity;
+  animation: slideInLeft 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-right {
+  will-change: transform, opacity;
+  animation: slideInRight 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-tab-fade {
+  will-change: transform, opacity;
+  animation: tabFadeIn 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Stagger Delays */
+.delay-100 { animation-delay: 80ms; }
+.delay-200 { animation-delay: 160ms; }
+.delay-300 { animation-delay: 240ms; }
+.delay-400 { animation-delay: 320ms; }
+.delay-500 { animation-delay: 400ms; }
+
+/* Entrance Loading Screen Fade Out */
+.loading-exit {
+  opacity: 0;
+  transform: scale(1.03);
+  pointer-events: none;
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
