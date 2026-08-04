@@ -21,7 +21,10 @@ import {
   Globe,
   ShieldCheck,
   Cpu,
-  Award as AwardIcon
+  Award as AwardIcon,
+  Images,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 export default function App() {
@@ -30,6 +33,8 @@ export default function App() {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
   const [copiedEmail, setCopiedEmail] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
 
   // Entrance Loading Screen State
   const [isLoading, setIsLoading] = useState(true);
@@ -39,6 +44,15 @@ export default function App() {
   const emailAddress = "adamzafryzaharin@gmail.com";
   const phoneNumber = "+6013-300-3775";
   const linkedinUrl = "https://www.linkedin.com/in/adamzafryzaharin3452492243";
+
+  // Image Paths
+  const imgAdamSpeaking = "/images/adam_speaking.jpg";
+  const imgPPSLSiswaLestari = "/images/ppsl_siswa_lestari.jpg";
+  const imgMPDIKSuits = "/images/mpdik_exco_suits.jpg";
+  const imgMPDIKFlag = "/images/mpdik_flag_sports.jpg";
+  const imgMPDIKVpSuits = "/images/mpdik_vp_suits.jpg";
+  const imgCSSSociety = "/images/css_society.jpg";
+  const imgPerkimExco = "/images/perkim_exco.jpg";
 
   // Simulated Site Entrance Loader
   useEffect(() => {
@@ -130,62 +144,84 @@ export default function App() {
 
   const experienceData = [
     {
+      id: 'ppsl',
       role: 'Pembimbing Program Siswa Lestari (PPSL)',
       organization: 'Universiti Sains Malaysia (USM)',
       period: '2024 — 2026',
       badge: 'CAMPUS LOGISTICS LEAD',
-      description: 'Appointed to key logistics leadership roles for university-wide student orientation programs and national delegations.',
+      description: 'Appointed to key logistics leadership roles for university orientation programs and national delegations.',
       points: [
-        'Led the Logistics Team for PPSL Induk throughout Mingguan Siswa Lestari (MSL).',
-        'Handled the Logistics Department for Malam Variasiswa across all Desasiswa hostel communities.',
-        'Led the Logistics Department for all USM student representatives attending the Festival of Ideas (FOI) in Putrajaya.'
+        'Led Logistics Team for PPSL Induk throughout Mingguan Siswa Lestari (MSL).',
+        'Handled Logistics Department for Malam Variasiswa across all Desasiswa hostels.',
+        'Led USM student delegation logistics for Festival of Ideas (FOI) in Putrajaya.'
       ]
     },
     {
+      id: 'mpdik-vp',
       role: 'Vice President I',
       organization: 'Majlis Penghuni Desasiswa Indah Kembara (MPDIK), USM',
       period: '2024 — 2025',
       badge: 'EXECUTIVE LEADERSHIP',
-      description: 'Spearheaded strategic planning, team development, and operational oversight for the student council.',
+      description: 'Spearheaded strategic planning, team development, and operational oversight for student council.',
       points: [
-        'Led strategic planning, fostered teamwork, and oversaw daily operations to ensure council objectives were achieved.',
-        'Committed to driving innovation, empowering members, and achieving sustainable organizational growth.'
+        'Led strategic planning and oversaw daily operations to achieve council goals.',
+        'Drove innovative student initiatives and supported sustainable growth.'
       ]
     },
     {
+      id: 'mpdik-protocol',
       role: 'Protocol and Activity Management EXCO',
       organization: 'Majlis Penghuni Desasiswa Indah Kembara (MPDIK), USM',
       period: '2023 — 2024',
       badge: 'EVENT MANAGEMENT',
       description: 'Managed protocol adherence and activity execution for student hostel events and university programs.',
       points: [
-        'Ensured seamless event coordination, protocol compliance, and efficient activity management.',
-        'Prioritized operational precision, structured organization, and stakeholder satisfaction.'
+        'Ensured seamless event coordination and protocol compliance.',
+        'Prioritized operational precision and stakeholder satisfaction.'
       ]
     },
     {
+      id: 'css',
       role: 'Community Engagement and Marketing EXCO',
       organization: 'Computer Science Society (CSS), USM',
       period: '2023 — 2024',
       badge: 'SOCIETY EXCO',
       description: 'Promoted Computer Science Society initiatives and fostered strong engagement among CS students.',
       points: [
-        'Built strong connections with stakeholders and designed impactful marketing campaigns.',
-        'Drove awareness, strengthened relationships, and promoted society initiatives effectively.'
+        'Designed impactful marketing campaigns and engaged key stakeholders.',
+        'Promoted society initiatives and boosted participation across events.'
       ]
     },
     {
+      id: 'perkim',
       role: 'Entrepreneurship and Economics EXCO',
       organization: 'Persatuan Kebajikan Islam Malaysia (PERKIM), USM',
       period: '2023 — 2024',
       badge: 'ECONOMIC EXCO',
       description: 'Drove economic initiatives and business development opportunities for PERKIM USM.',
       points: [
-        'Promoted innovative ventures and economic initiatives to support organizational activities.',
-        'Empowered members with practical skills, fostering collaboration and growth opportunities.'
+        'Promoted innovative economic ventures to support council activities.',
+        'Empowered members through practical skills and collaboration.'
       ]
     }
   ];
+
+  const experienceGallery = [
+    { src: imgPPSLSiswaLestari, title: 'PPSL Logistics Lead & USM Leadership', sub: 'Mingguan Siswa Lestari (MSL) USM' },
+    { src: imgMPDIKVpSuits, title: 'Vice President I & MPDIK Executive Team', sub: 'Majlis Penghuni Desasiswa Indah Kembara' },
+    { src: imgMPDIKSuits, title: 'Protocol EXCO Formal Committee Portrait', sub: 'MPDIK Executive Committee' },
+    { src: imgMPDIKFlag, title: 'Desasiswa Indah Kembara Event & Sports Execution', sub: 'Hostel Community Sports Event' },
+    { src: imgCSSSociety, title: 'Computer Science Society (CSS) Executive Team', sub: 'USM CS Community Engagement' },
+    { src: imgPerkimExco, title: 'PERKIM USM EXCO Certificate Ceremony', sub: 'Economics & Entrepreneurship Committee' }
+  ];
+
+  const handleNextSlide = () => {
+    setActiveSlideIndex(prev => (prev + 1) % experienceGallery.length);
+  };
+
+  const handlePrevSlide = () => {
+    setActiveSlideIndex(prev => (prev - 1 + experienceGallery.length) % experienceGallery.length);
+  };
 
   const educationData = [
     {
@@ -391,7 +427,7 @@ export default function App() {
             <section className="relative pt-12 pb-16 px-6 max-w-6xl mx-auto overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 {/* Hero Left Content */}
-                <div className="lg:col-span-8 animate-slide-left delay-100">
+                <div className="lg:col-span-7 animate-slide-left delay-100">
                   <div className="flex flex-wrap gap-2 mb-6">
                     <span className="px-3 py-1 bg-[#FA5D29]/10 text-[#FA5D29] border border-[#FA5D29]/30 rounded-full text-xs font-bold tracking-wider uppercase flex items-center gap-1">
                       <Cpu size={13} /> INTELLIGENT COMPUTING
@@ -404,17 +440,17 @@ export default function App() {
                     </span>
                   </div>
 
-                  <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-8">
+                  <h1 className="font-heading text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] mb-8">
                     Computer Science Student <span className="text-[#FA5D29] underline decoration-[#FA5D29]/40 underline-offset-8">specializing in Intelligent Computing & Systems.</span>
                   </h1>
 
-                  <p className={`text-lg sm:text-xl leading-relaxed mb-8 max-w-2xl font-normal ${
+                  <p className={`text-base sm:text-lg leading-relaxed mb-8 max-w-2xl font-normal ${
                     isDark ? 'text-neutral-300' : 'text-neutral-700'
                   }`}>
                     I am a Computer Science Student at <strong>Universiti Sains Malaysia (USM)</strong> focused on computer infrastructure, system design and architecture, cybersecurity, and programming. Beyond academics, I am an active student leader driving impactful events and student council initiatives across campus.
                   </p>
 
-                  <div className="flex flex-wrap gap-4 items-center mb-10">
+                  <div className="flex flex-wrap gap-4 items-center mb-6">
                     <button 
                       onClick={() => setActiveTab('projects')}
                       className="px-7 py-4 bg-[#222222] hover:bg-black text-white font-bold text-sm tracking-wider uppercase rounded-full shadow-lg flex items-center gap-2 transition-all cursor-pointer"
@@ -436,48 +472,43 @@ export default function App() {
                   </div>
                 </div>
 
-                {/* Developer Profile Snapshot Card */}
-                <div className="lg:col-span-4 animate-slide-right delay-200">
-                  <div className={`p-6 rounded-3xl border-2 shadow-xl transition-all ${
+                {/* Minimalist Profile Picture & Developer Snapshot Card */}
+                <div className="lg:col-span-5 animate-slide-right delay-200">
+                  <div className={`p-6 rounded-3xl border-2 shadow-xl transition-all relative overflow-hidden group ${
                     isDark ? 'bg-[#1c1c1c] border-neutral-800' : 'bg-white border-neutral-200'
                   }`}>
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-xs font-mono font-bold text-[#FA5D29] uppercase tracking-wider flex items-center gap-1.5">
-                        <User size={14} /> DEVELOPER PROFILE
-                      </span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+                    {/* Minimalist Integrated Profile Photo Frame */}
+                    <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-6 border border-neutral-200 dark:border-neutral-700 shadow-md">
+                      <img 
+                        src={imgAdamSpeaking} 
+                        alt="Adam Zafry Zaharin Speaking at USM" 
+                        className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      
+                      <div className="absolute bottom-4 left-4 right-4 text-white">
+                        <span className="px-2.5 py-0.5 bg-[#FA5D29] text-[10px] font-bold uppercase rounded-md tracking-wider inline-block mb-1">
+                          STUDENT LEADER & DEVELOPER
+                        </span>
+                        <h4 className="font-heading font-bold text-lg leading-tight">Adam Zafry Zaharin</h4>
+                        <p className="text-[11px] text-neutral-300 font-mono">Universiti Sains Malaysia</p>
+                      </div>
                     </div>
 
-                    <h3 className="font-heading text-2xl font-bold mb-1">Adam Zafry Zaharin</h3>
-                    <div className="text-xs font-bold text-[#502BD8] mb-4">Computer Science Undergrad (USM)</div>
-
-                    <div className="space-y-3 text-xs font-mono mb-6 border-y border-neutral-200 dark:border-neutral-800 py-4">
+                    <div className="space-y-2 text-xs font-mono border-t border-neutral-200 dark:border-neutral-800 pt-4">
                       <div className="flex items-center justify-between">
                         <span className="text-neutral-400">Specialization:</span>
                         <span className="font-bold text-right">Intelligent Computing</span>
                       </div>
                       <div className="flex items-center justify-between">
-                        <span className="text-neutral-400">Core Proficiencies:</span>
+                        <span className="text-neutral-400">Core Languages:</span>
                         <span className="font-bold text-right text-[#FA5D29]">C++ & SQL</span>
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-neutral-400">Foundation CGPA:</span>
                         <span className="font-bold text-right text-emerald-500">3.98 (KMKN)</span>
                       </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-neutral-400">Location:</span>
-                        <span className="font-bold text-right">Pahang, Malaysia</span>
-                      </div>
                     </div>
-
-                    <a 
-                      href={linkedinUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="w-full py-3 bg-[#502BD8] hover:bg-[#3f20b3] text-white font-bold text-xs uppercase tracking-wider rounded-xl flex items-center justify-center gap-2 transition-all shadow-md cursor-pointer"
-                    >
-                      <FaLinkedin size={15} /> Connect on LinkedIn
-                    </a>
                   </div>
                 </div>
               </div>
@@ -536,7 +567,7 @@ export default function App() {
               </div>
             </div>
 
-            {/* Project Cards Grid */}
+            {/* Clean Minimalist Project Cards Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {filteredProjects.map((project, idx) => (
                 <div 
@@ -587,41 +618,109 @@ export default function App() {
           </div>
         )}
 
-        {/* TAB 3: EXPERIENCE & LEADERSHIP */}
+        {/* TAB 3: EXPERIENCE & LEADERSHIP (GENERAL EMBEDDED SLIDER WITH BIGGER PICTURE SPACE) */}
         {activeTab === 'experience' && (
-          <div key="experience" className="animate-tab-fade max-w-6xl mx-auto px-6 py-12">
-            <div className="max-w-3xl mb-12 animate-slide-left delay-100">
-              <span className="px-3 py-1 bg-[#FA5D29] text-white text-xs font-bold tracking-widest uppercase rounded-full inline-block mb-3">
+          <div key="experience" className="animate-tab-fade max-w-5xl mx-auto px-6 py-10">
+            <div className="mb-6 animate-slide-left delay-100">
+              <span className="px-3 py-1 bg-[#FA5D29] text-white text-xs font-bold tracking-widest uppercase rounded-full inline-block mb-2">
                 CAMPUS & LEADERSHIP ROLES
               </span>
-              <h2 className="font-heading text-4xl font-extrabold tracking-tight">Relevant Experiences</h2>
+              <h2 className="font-heading text-3xl sm:text-4xl font-extrabold tracking-tight">Relevant Experiences</h2>
             </div>
 
-            <div className="space-y-6">
+            {/* ENLARGED GENERAL INTERACTIVE SLIDER */}
+            <div className="mb-10 animate-slide-up delay-150">
+              <div className="flex items-center justify-between mb-2.5 px-1 text-xs font-mono text-neutral-400">
+                <span className="font-bold uppercase flex items-center gap-1.5 text-sm">
+                  <Images size={16} className="text-[#FA5D29]" /> Campus Life & Leadership Gallery ({activeSlideIndex + 1} / {experienceGallery.length})
+                </span>
+                <span className="hidden sm:inline text-xs text-neutral-500">Click photo to view in full resolution</span>
+              </div>
+
+              {/* Bigger Picture Display Container */}
+              <div className="relative max-w-4xl mx-auto h-72 sm:h-96 md:h-[420px] rounded-3xl overflow-hidden border-2 border-neutral-300 dark:border-neutral-800 shadow-2xl group bg-black">
+                {experienceGallery[activeSlideIndex] && (
+                  <div 
+                    key={activeSlideIndex}
+                    onClick={() => setSelectedImage({ src: experienceGallery[activeSlideIndex].src, caption: `${experienceGallery[activeSlideIndex].title} — ${experienceGallery[activeSlideIndex].sub}` })}
+                    className="relative w-full h-full cursor-pointer animate-tab-fade"
+                  >
+                    <img 
+                      src={experienceGallery[activeSlideIndex].src} 
+                      alt={experienceGallery[activeSlideIndex].title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+                    
+                    <div className="absolute bottom-4 left-5 right-5 text-white text-center">
+                      <h4 className="text-base sm:text-lg font-heading font-bold block leading-tight truncate">
+                        {experienceGallery[activeSlideIndex].title}
+                      </h4>
+                      <p className="text-xs font-mono text-neutral-300 block truncate mt-1">
+                        {experienceGallery[activeSlideIndex].sub}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Left & Right Arrow Navigation Buttons */}
+                <button
+                  onClick={handlePrevSlide}
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur-md transition-all cursor-pointer z-10 border border-white/20 shadow-lg"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+                <button
+                  onClick={handleNextSlide}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/70 hover:bg-black/90 text-white backdrop-blur-md transition-all cursor-pointer z-10 border border-white/20 shadow-lg"
+                >
+                  <ChevronRight size={22} />
+                </button>
+
+                {/* Dots Pagination */}
+                <div className="absolute bottom-2 left-0 right-0 flex justify-center space-x-2 z-10 pointer-events-none">
+                  {experienceGallery.map((_, idx) => (
+                    <span 
+                      key={idx}
+                      className={`h-2 rounded-full transition-all ${
+                        activeSlideIndex === idx ? 'w-6 bg-[#FA5D29]' : 'w-2 bg-white/50'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* COMPACT EXPERIENCE DETAILS LIST */}
+            <div className="space-y-3.5 animate-slide-up delay-200">
+              <div className="text-xs font-mono font-bold text-neutral-400 uppercase mb-1 px-1">
+                Leadership Roles & Responsibilities Summary
+              </div>
+
               {experienceData.map((exp, idx) => (
-                <div key={idx} className={`p-8 rounded-3xl border-2 transition-all hover:scale-[1.01] animate-slide-up ${
-                  idx === 0 ? 'delay-100' : idx === 1 ? 'delay-200' : 'delay-300'
-                } ${
-                  isDark ? 'bg-[#181818] border-neutral-800' : 'bg-white border-neutral-200'
+                <div key={exp.id || idx} className={`p-4 sm:p-5 rounded-2xl border-2 transition-all ${
+                  isDark ? 'bg-[#181818] border-neutral-800 hover:border-neutral-700' : 'bg-white border-neutral-200 hover:border-neutral-300'
                 }`}>
-                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
-                    <span className="px-3 py-1 bg-[#FA5D29] text-white text-xs font-bold rounded-full uppercase tracking-wider">
-                      {exp.badge}
-                    </span>
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-1 mb-1.5">
+                    <div className="flex items-center gap-2">
+                      <span className="px-2 py-0.5 bg-[#FA5D29] text-white text-[10px] font-bold rounded-full uppercase tracking-wider">
+                        {exp.badge}
+                      </span>
+                      <h3 className="font-heading text-base sm:text-lg font-bold">{exp.role}</h3>
+                    </div>
                     <span className="text-xs font-mono font-bold text-neutral-400">{exp.period}</span>
                   </div>
 
-                  <h3 className="font-heading text-2xl font-bold mb-1">{exp.role}</h3>
-                  <div className="text-sm font-bold text-[#502BD8] mb-4">{exp.organization}</div>
+                  <div className="text-xs font-bold text-[#502BD8] mb-2">{exp.organization}</div>
 
-                  <p className={`text-sm leading-relaxed mb-4 ${isDark ? 'text-neutral-300' : 'text-neutral-700'}`}>
+                  <p className={`text-xs leading-relaxed mb-2.5 ${isDark ? 'text-neutral-300' : 'text-neutral-700'}`}>
                     {exp.description}
                   </p>
 
-                  <div className="space-y-2 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-xs">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-2 pt-2.5 border-t border-neutral-200 dark:border-neutral-800 text-[11px]">
                     {exp.points.map((pt, pIdx) => (
-                      <div key={pIdx} className="flex items-start gap-2 text-neutral-400">
-                        <CheckCircle2 size={16} className="text-[#FA5D29] shrink-0 mt-0.5" />
+                      <div key={pIdx} className="flex items-start gap-1.5 text-neutral-400">
+                        <CheckCircle2 size={13} className="text-[#FA5D29] shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </div>
                     ))}
@@ -839,6 +938,33 @@ export default function App() {
                 <ExternalLink size={16} /> Live Demo
               </a>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Image Lightbox Modal */}
+      {selectedImage && (
+        <div 
+          onClick={() => setSelectedImage(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md animate-tab-fade cursor-pointer"
+        >
+          <div className="relative max-w-4xl w-full p-2" onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/70 text-white hover:bg-neutral-800 transition-colors z-10 cursor-pointer"
+            >
+              <X size={22} />
+            </button>
+            <img 
+              src={selectedImage.src} 
+              alt={selectedImage.caption} 
+              className="w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl border border-neutral-800"
+            />
+            {selectedImage.caption && (
+              <div className="mt-3 text-center text-xs font-mono text-[#FA5D29] font-bold">
+                {selectedImage.caption}
+              </div>
+            )}
           </div>
         </div>
       )}
